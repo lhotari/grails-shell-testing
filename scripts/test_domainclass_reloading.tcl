@@ -17,17 +17,17 @@ send "grails -plain-output\r"
 expect "grails>"
 send "run-app\r"
 expect "grails>"
-#sleep 10
 send "create-domain-class A\r"
 expect "grails>"
 send "create-scaffold-controller dcreloadingapp.A\r"
 expect "grails>"
-sleep 10
+set timeout 10
+expect "\n"
 addfield "dcreloadingapp/grails-app/domain/dcreloadingapp/A.groovy" "name"
-sleep 5
+expect "\n"
 for {set i 0} {$i < 10} {incr i} {
     addfield "dcreloadingapp/grails-app/domain/dcreloadingapp/A.groovy" "field$i"    
-    sleep 5
+    expect "\n"
 }
 send "exit\r"
 expect "$ "
