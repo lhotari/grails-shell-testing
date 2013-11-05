@@ -1,4 +1,6 @@
 #!/usr/bin/expect
+set timeout 60
+
 proc addfield {filename fieldname} {
     puts "Adding field $fieldname to $filename"
     exec perl -i -p -e "s/^\}\$/String $fieldname\\n\}\\n/" $filename 
@@ -7,22 +9,19 @@ proc addfield {filename fieldname} {
 exec rm -rf dcreloadingapp
 spawn bash --norc --noprofile
 expect "$ "
-send "grails create-app dcreloadingapp\r"
+send "grails -plain-output create-app dcreloadingapp\r"
 expect "$ "
 send "cd dcreloadingapp\r"
 expect "$ "
-send "grails\r"
+send "grails -plain-output\r"
 expect "grails>"
 send "run-app\r"
 expect "grails>"
-sleep 10
+#sleep 10
 send "create-domain-class A\r"
-sleep 1
 expect "grails>"
 send "create-scaffold-controller dcreloadingapp.A\r"
-sleep 1
 expect "grails>"
-send "\r"
 sleep 10
 addfield "dcreloadingapp/grails-app/domain/dcreloadingapp/A.groovy" "name"
 sleep 5
