@@ -18,7 +18,7 @@ expect "$ "
 updateplugin "dcreloadingapp/grails-app/conf/BuildConfig.groovy" "hibernate" {3.6.10.3-SNAPSHOT}
 send "cd dcreloadingapp\r"
 expect "$ "
-send "grails -plain-output\r"
+send "grails $argv -plain-output\r"
 expect "grails>"
 send "create-domain-class A\r"
 expect "grails>"
