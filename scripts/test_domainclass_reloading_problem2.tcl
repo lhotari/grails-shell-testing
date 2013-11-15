@@ -14,7 +14,7 @@ spawn bash --norc --noprofile
 expect "$ "
 send "grails -plain-output create-app dcreloadingapp\r"
 expect "$ "
-updateplugin "dcreloadingapp/grails-app/conf/BuildConfig.groovy" "hibernate" {3.6.10.3-SNAPSHOT}
+#updateplugin "dcreloadingapp/grails-app/conf/BuildConfig.groovy" "hibernate" {3.6.10.3-SNAPSHOT}
 send "cd dcreloadingapp\r"
 expect "$ "
 send "grails $argv -plain-output\r"
