@@ -18,7 +18,8 @@ expect "grails>"
 send "create-domain-class A\r"
 expect "grails>"
 send "create-scaffold-controller dcreloadingapp.A\r"
-expect "grails>"
+expect "|Created file test/unit/dcreloadingapp/ASpec.groovy"
+after 1000
 set timeout 10
 expect "\n"
 addfield "dcreloadingapp/grails-app/domain/dcreloadingapp/A.groovy" "name"
