@@ -1,14 +1,7 @@
 #!/usr/bin/expect
 set timeout 60
 
-proc updateplugin {filename pluginname version} {
-    exec perl -i -p -e "s/(\[\'\"\]:$pluginname:)\[^'\"\]+(\[\'\"\])/\$\{1\}$version\$\{2\}/" $filename
-}
-
-proc addfield {filename fieldname} {
-    puts "Adding field $fieldname to $filename"
-    exec perl -i -p -e "s/^\}\$/String $fieldname\\n\}\\n/" $filename 
-}
+source [file join [file dirname [info script]] "shared_functions.tcl"]
 
 exec rm -rf dcreloadingapp
 spawn bash --norc --noprofile
